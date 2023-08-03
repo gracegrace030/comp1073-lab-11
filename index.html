@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab11</title>
+
+    <style>
+        body{
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            text-align: center;
+        }
+
+        #shopping-list ul{
+            display: inline-block;
+            margin-top: 20px;
+            padding: 20px;
+            min-width: 290px;
+        }
+        
+        #shopping-list li{
+            display: flex;
+            justify-content: space-between;
+            
+            padding: 10px 0;
+            margin-bottom: 5px;
+            border-bottom: 1px solid;
+        }
+
+        #shopping-list button{
+            margin-left: 50px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Shopping List</h1>
+    </header>
+    <main>
+        <section id="shopping-item-wrapper">
+            <label for="newItem">Enter an item:</label>
+            <input type="text" id="input-item">
+            <button type="submit" id="btn-add-item">Add</button>
+        </section>
+
+        <section id="shopping-list">
+            <ul></ul>
+        </section>
+    </main>
+
+    <script>
+        const btnAddItem = document.getElementById("btn-add-item");
+        const inputItem = document.getElementById("input-item");
+        const shoppingList = document.querySelector("#shopping-list ul");
+
+        btnAddItem.addEventListener("click",()=>{
+            inputValue = inputItem.value;
+            if (inputValue !== null && inputValue !== ""){
+
+                let li = document.createElement("li");
+                li.innerHTML = inputValue;
+                shoppingList.appendChild(li);
+
+                let btnDelete = document.createElement("button");
+                btnDelete.innerHTML = "Delete";
+                li.appendChild(btnDelete);
+                btnDelete.addEventListener("click", ()=>{
+                    shoppingList.removeChild(li);
+                });
+
+                inputItem.value = "";
+                inputItem.focus();
+            }
+        });
+        
+    </script>
+</body>
+</html>
